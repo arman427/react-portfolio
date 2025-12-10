@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Jost:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
+@import "tailwindcss";
+
+body {
+   font-family: 'Jost', sans-serif;
+   font-size: 18px;
+   line-height: 1.5;
+   background: #000;
+   color: #fff;
+   overflow-x: hidden;
+}
+
+.asd {
+   clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.one {
+   animation: animate 3s infinite;
+   top: -1200px;
+   right: -100px;
+}
+
+.two {
+   animation: animate 3s infinite;
+   animation-delay: -0.3s;
+   top: -1200px;
+   right: -500px;
+}
+
+.three {
+   animation: animate 3s infinite;
+   animation-delay: 0.6s;
+   top: -1300px;
+   right: -800px;
+}
+
+.four {
+   animation: animate 3s infinite;
+   animation-delay: -0.9s;
+   top: -1300px;
+   right: -1100px;
+}
+
+.five {
+   animation: animate 3s infinite;
+   animation-delay: -0.2s;
+   top: -1300px;
+   right: -900px;
+}
+
+.six {
+   animation: animate 3s infinite;
+   animation-delay: -0.5s;
+   top: -1300px;
+   right: -700px;
+}
+
+.seven {
+   animation: animate 3s infinite;
+   animation-delay: -0.5s;
+   top: -1300px;
+   right: -400px;
+}
+
+.eight {
+   animation: animate 3s infinite;
+   animation-delay: 0.5s;
+   top: -1300px;
+   right: -300px;
+}
+
+.nine {
+   animation: animate 3s infinite;
+   animation-delay: 2s;
+   top: -1300px;
+   right: -1500px;
+}
+
+.ten {
+   animation: animate 3s infinite;
+   animation-delay: 0.2s;
+   top: -1300px;
+   right: -1600px;
+}
+
+
+@keyframes animate {
+   0% {
+      transform: translateY(0px);
+   }
+
+   70% {
+      opacity: 1;
+   }
+
+   100% {
+      transform: translateY(2100px);
+      opacity: 0;
+   }
+}
+
+.gradient {
+   animation: gradient 0.5s ease alternate infinite;
+}
+
+@keyframes gradient {
+   0% {
+      filter: blur(8px);
+   }
+
+   50% {
+      filter: blur(12px);
+   }
+
+   110% {
+      filter: blur(16px);
+   }
+}
+
+.button:after {
+   content: '';
+   position: absolute;
+   left: 0;
+   width: 30px;
+   height: 100%;
+   background-color: rgba(255, 255, 255, 0.4);
+
+   left: -60px;
+   transition: all 0.2s ease;
+}
+
+.button:hover::after {
+   left: 100%;
+}

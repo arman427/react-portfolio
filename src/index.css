@@ -121,9 +121,9 @@ body {
    content: '';
    position: absolute;
    left: 0;
-   width: 30px;
+   width: 20px;
    height: 100%;
-   background-color: rgba(255, 255, 255, 0.4);
+   background-color: rgba(255, 255, 255, 1);
 
    left: -60px;
    transition: all 0.2s ease;
@@ -131,4 +131,35 @@ body {
 
 .button:hover::after {
    left: 100%;
+}
+
+.button {
+   position: relative;
+   overflow: hidden;
+}
+
+.button .cursor-animation {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   background-color: rgba(255, 255, 255, 0.2);
+   filter: blur(20px);
+   pointer-events: none;
+   transition: transform 0.05s linear;
+}
+
+.header-animation {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   background-color: rgba(255, 255, 255, 0.2);
+   filter: blur(30px);
+   pointer-events: none;
+   transition: transform 0.05s ease;
 }

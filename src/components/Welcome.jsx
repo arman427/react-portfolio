@@ -1,4 +1,31 @@
+import { useRef, useState } from "react";
+
 const Welcome = () => {
+   const [isHovered, setIsHovered] = useState(false);
+   const [position, setPosition] = useState({ x: 0, y: 0 });
+   const buttonRef = useRef(null);
+   const buttonEnter = () => {
+      setIsHovered(true);
+   }
+   const buttonLeave = () => {
+      setIsHovered(false);
+   }
+
+   const buttonMove = (event) => {
+      const button = buttonRef.current;
+      if (!button) return;
+      const rect = button.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      setPosition({ x, y });
+   }
+
+   const animationStyle = {
+      transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
+      opacity: isHovered ? 1 : 0,
+   };
+
    return (
       <>
          <div className="container flex flex-col gap-4 justify-center items-center mx-auto mt-50 overflow-hidden">
@@ -10,9 +37,14 @@ const Welcome = () => {
                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4 mx-auto" />
             </div>
          </div>
-         <div className="mx-auto w-1/3 text-center text-white/70">Я Начинающий Фронтенд-Разработчик, превращающий идеи в быстрые, масштабируемые и интуитивно понятные веб-приложения. Разрабатываю на React и создаю чистые, эффективные пользовательские интерфейсы.</div>
-         <button className="mx-auto flex items-center mt-10 cursor-pointer px-7 py-3 border border-white/30 rounded-4xl text-white/60 relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-white/50 hover:text-white hover:shadow-md hover:shadow-white/50">
-            <div className="w-full inset-0 absolute bg-white/30 rounded-4xl opacity-70 blur-3xl"/>
+         <div className="mx-auto w-1/3 text-center text-white/70">Начинающий Фронтенд-Разработчик, превращающий идеи в быстрые, масштабируемые и интуитивно понятные веб-приложения. Разрабатываю на React и создаю чистые, эффективные пользовательские интерфейсы.</div>
+         <button className="mx-auto flex items-center mt-10 cursor-pointer px-7 py-3 border border-white/30 rounded-4xl text-white/60 relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-white/50 hover:text-white hover:shadow-xl hover:shadow-white/10"
+            ref={buttonRef}
+            onMouseEnter={buttonEnter}
+            onMouseLeave={buttonLeave}
+            onMouseMove={buttonMove}>
+            <span className="cursor-animation" style={animationStyle} />
+            <div className="w-full inset-0 absolute bg-white/30 rounded-4xl opacity-70 blur-3xl" />
             Смотреть
          </button>
       </>

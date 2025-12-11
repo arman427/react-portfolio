@@ -14,6 +14,10 @@ body {
    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }
 
+.linii {
+   filter: blur(100px);
+}
+
 .one {
    animation: animate 3s infinite;
    top: -1200px;
@@ -96,24 +100,6 @@ body {
    100% {
       transform: translateY(2100px);
       opacity: 0;
-   }
-}
-
-.gradient {
-   animation: gradient 0.5s ease alternate infinite;
-}
-
-@keyframes gradient {
-   0% {
-      filter: blur(8px);
-   }
-
-   50% {
-      filter: blur(12px);
-   }
-
-   110% {
-      filter: blur(16px);
    }
 }
 

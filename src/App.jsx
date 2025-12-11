@@ -1,6 +1,6 @@
 function App() {
    return (
-      <div className="h-screen w-screen mx-auto flex justify-center items-center z-[9999px] pointer-events-none overflow-hidden absolute inset-0">
+      <div className="w-screen overflow-hidden mx-auto flex justify-center items-center pointer-events-none absolute inset-0 linii">
          <div className="blur-[100px] relative z-[9999px]">
             <div className="one absolute w-5 h-200 bg-white asd rounded-b-[300px] rotate-45"></div>
             <div className="two absolute w-5 h-200 bg-white asd rounded-b-[300px] rotate-45"></div>

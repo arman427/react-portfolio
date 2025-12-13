@@ -128,11 +128,11 @@ body {
    position: absolute;
    top: 0;
    left: 0;
-   width: 100px;
+   width: 150px;
    height: 100px;
    border-radius: 50%;
-   background-color: rgba(255, 255, 255, 0.2);
-   filter: blur(20px);
+   background-color: rgba(255, 255, 255, 0.3);
+   filter: blur(30px);
    pointer-events: none;
    transition: transform 0.05s linear;
 }
@@ -148,4 +148,39 @@ body {
    filter: blur(30px);
    pointer-events: none;
    transition: transform 0.05s ease;
+}
+
+
+.gradient-text {
+   background-image: linear-gradient(90deg, rgb(123, 87, 252), rgb(98, 193, 229));
+   color: transparent;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -webkit-background-clip: text;
+}
+
+
+.grad-linii {
+   position: relative;
+   gap: 4px;
+}
+
+.grad-linii::before {
+   content: '';
+   display: inline-block;
+   margin-right: 7px;
+   gap: 5px;
+   flex-shrink: 0;
+   left: 0;
+   height: 17px;
+   width: 2px;
+   background: linear-gradient(0deg, rgb(123, 87, 252), rgb(98, 193, 229));
+}
+
+.social-icon {
+   width: 50px;
+   height: 50px;
+   padding: 13px;
+   fill: #fff;
+   border-radius: 32px;
 }

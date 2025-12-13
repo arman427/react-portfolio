@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
+import { useScrollTo } from './../hooks/useScrollTo';
 
 const Header = () => {
    const [isHovered, setIsHovered] = useState(false);
    const [position, setPosition] = useState({ x: 0, y: 0 });
    const buttonRef = useRef(null);
+   const scrollToSection = useScrollTo();
    const buttonEnter = () => {
       setIsHovered(true);
    }

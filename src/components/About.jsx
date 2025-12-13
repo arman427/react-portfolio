@@ -4,7 +4,7 @@ import AboutSocials from './AboutSocials';
 const About = () => {
    return (
       <>
-         <section className="about mt-150">
+         <section className="about mt-150" id='about'>
             <div className="container mx-auto">
                <div className="about-content flex items-center justify-between gap-10">
                   <div className="about-img__wrapper rounded-3xl">

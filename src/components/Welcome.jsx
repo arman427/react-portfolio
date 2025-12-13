@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { ArrowDown } from "lucide-react";
+import { useScrollTo } from "../hooks/useScrollTo";
 
 
 
@@ -29,6 +30,8 @@ const Welcome = () => {
       opacity: isHovered ? 1 : 0,
    };
 
+   const scrollToSection = useScrollTo();
+
    return (
       <>
          <div className="container flex flex-col gap-4 justify-center items-center mx-auto mt-50 overflow-hidden">
@@ -45,7 +48,7 @@ const Welcome = () => {
             ref={buttonRef}
             onMouseEnter={buttonEnter}
             onMouseLeave={buttonLeave}
-            onMouseMove={buttonMove}>
+            onMouseMove={buttonMove} onClick={(e) => scrollToSection('about', e)}>
             <ArrowDown width={'17px'} />
             <span className="cursor-animation" style={animationStyle} />
             <div className="w-full inset-0 absolute bg-white/30 rounded-4xl opacity-70 blur-3xl -z-10" />

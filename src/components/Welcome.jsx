@@ -1,12 +1,15 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowDown } from "lucide-react";
 import { useScrollTo } from "../hooks/useScrollTo";
-
+import CountUp from "react-countup";
 
 
 const Welcome = () => {
    const [isHovered, setIsHovered] = useState(false);
    const [position, setPosition] = useState({ x: 0, y: 0 });
+   const [isVisible, setIsVisible] = useState(false);
+
+
    const buttonRef = useRef(null);
    const buttonEnter = () => {
       setIsHovered(true);
@@ -32,10 +35,15 @@ const Welcome = () => {
 
    const scrollToSection = useScrollTo();
 
+
+   useEffect(() => {
+      setIsVisible(true);
+   }, []);
+
    return (
       <>
-         <div className="container flex flex-col gap-4 justify-center items-center mx-auto mt-50 overflow-hidden">
-            <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">Привет, я Арман</h1>
+         <div className="container flex flex-col gap-4 justify-center items-center mx-auto pt-50 overflow-hidden">
+            <h1 className={`md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20 ${isVisible ? 'active' : ''} welcome-title`}>Привет, я Арман</h1>
             <div className="w-full h-10 relative flex justify-center animate-pulse">
                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm mx-auto" />
                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4 mx-auto" />
@@ -43,8 +51,8 @@ const Welcome = () => {
                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4 mx-auto" />
             </div>
          </div>
-         <div className="mx-auto w-1/3 text-center text-white/70">Начинающий Фронтенд-Разработчик, превращающий идеи в быстрые, масштабируемые и интуитивно понятные веб-приложения. Разрабатываю на React и создаю чистые, эффективные пользовательские интерфейсы.</div>
-         <button className="mx-auto flex gap-1 items-center mt-10 cursor-pointer px-6 py-3 border border-white/30 rounded-4xl text-white/60 relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-white/50 hover:text-white hover:shadow-xl hover:shadow-white/10"
+         <div className={`mx-auto w-1/3 text-center text-white/70 ${isVisible ? 'active' : ''} welcome-text`}>Начинающий Фронтенд-Разработчик, превращающий идеи в быстрые, масштабируемые и интуитивно понятные веб-приложения. Разрабатываю на React и создаю чистые, эффективные пользовательские интерфейсы.</div>
+         <button className={`mx-auto flex gap-1 items-center mt-10 cursor-pointer px-6 py-3 border border-black rounded-4xl bg-white text-black relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-white/50 hover:text-white hover:shadow-xl hover:shadow-white/10 hover:bg-transparent welcome-button`}
             ref={buttonRef}
             onMouseEnter={buttonEnter}
             onMouseLeave={buttonLeave}
@@ -55,6 +63,20 @@ const Welcome = () => {
             Смотреть
             <ArrowDown width={'17px'} />
          </button>
+
+         <div className="flex mx-auto flex-col items-center mt-30">
+            <p className="mx-auto text-2xl text-center text-white/60">Количество проектов за мое время обучения:</p>
+            <CountUp
+               start={0}
+               end={10}
+               duration={6}
+               delay={3}
+               enableScrollSpy={false}
+               scrollSpyOnce={false}
+               useEasing={true}
+               className="text-8xl countup"
+            />
+         </div>
       </>
    );
 }

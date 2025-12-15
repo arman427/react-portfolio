@@ -1,4 +1,4 @@
-import aboutMe from './../images/about-me.jpg'
+import aboutMe from '/images/about-me.jpg'
 import AboutSocials from './AboutSocials';
 
 const About = () => {
@@ -19,7 +19,7 @@ const About = () => {
                         <li><span className='grad-linii'>Навыки:</span> Уверенно работаю с HTML5, CSS3 (включая Flexbox/Grid) и JavaScript (ES6+). Сейчас активно углубляюсь в Tailwind и React и осваиваю работу с системами контроля версий, такими как Git.
                         </li>
                         <li>
-                           <span className='grad-linii'>Опыт:</span> За этот год я разработал около 10 учебных и пет-проектов, включая адаптивные лендинги, небольшие приложения с API-интеграцией.
+                           <span className='grad-linii'>Опыт:</span> У меня примерно год обучения и практики, за это время я сделал множество проектов, включая адаптивные лендинги, небольшие приложения с API-интеграцией.
                         </li>
                         <li>
                            <span className='grad-linii'>Моя цель:</span> Создавать чистый, элегантный и, самое главное, удобный для пользователя код, который приносит реальную пользу. Я постоянно учусь и ищу возможности применить свои знания в реальных проектах.

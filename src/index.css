@@ -152,17 +152,20 @@ body {
 
 
 .gradient-text {
-   background-image: linear-gradient(90deg, rgb(110, 70, 255), rgb(70, 206, 255));
+   background-image: linear-gradient(90deg, rgb(91, 50, 241), rgb(5, 255, 255));
    color: transparent;
    background-clip: text;
    -webkit-text-fill-color: transparent;
    -webkit-background-clip: text;
 }
 
-/* .welcome-button {
-   width: fit-content;
-} */
-
+.countup {
+   background-image: linear-gradient(90deg, rgb(91, 50, 241), rgb(5, 255, 255));
+   color: transparent;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -webkit-background-clip: text;
+}
 
 .grad-linii {
    position: relative;
@@ -181,10 +184,43 @@ body {
    background: linear-gradient(0deg, rgb(123, 87, 252), rgb(98, 193, 229));
 }
 
+
+.project-title {
+   background-image: linear-gradient(90deg, rgb(91, 50, 241), rgb(5, 255, 255));
+   color: transparent;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -webkit-background-clip: text;
+   font-weight: 500;
+}
+
 .social-icon {
    width: 50px;
    height: 50px;
    padding: 13px;
    fill: #fff;
    border-radius: 32px;
+}
+
+.welcome-title {
+   opacity: 0;
+   transform: translateY(-200px);
+   transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 6s ease;
+}
+
+.welcome-title.active {
+   opacity: 1;
+   transform: translateY(0px);
+}
+
+.welcome-text {
+   opacity: 0;
+   transform: translateY(-150px);
+   transition: transform 1.7s ease, opacity 3s ease;
+   transition-delay: 0.6s;
+}
+
+.welcome-text.active {
+   opacity: 1;
+   transform: translateY(0px);
 }

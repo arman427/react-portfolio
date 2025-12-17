@@ -1,11 +1,58 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useScrollTo } from './../hooks/useScrollTo';
+import { Moon } from "lucide-react";
+import { Sun } from "lucide-react";
+
 
 const Header = () => {
    const [isHovered, setIsHovered] = useState(false);
    const [position, setPosition] = useState({ x: 0, y: 0 });
    const buttonRef = useRef(null);
    const scrollToSection = useScrollTo();
+   const [scrollY, setScrollY] = useState(0);
+   const [isFixed, setIsFixed] = useState(false)
+
+   useEffect(() => {
+      const handleScroll = () => {
+         if (window.scrollY > 300) {
+            setIsFixed(true);
+         } else {
+            setIsFixed(false);
+         }
+      }
+
+      window.addEventListener('scroll', handleScroll)
+      return () => {
+         window.removeEventListener('scroll', handleScroll)
+      };
+   }, []);
+
+
+   const getInitialisDefault = () => { // Достает тему из лок. стореджа и возвращает true если тема default, fals если dark (светлая)
+      const storedTheme = localStorage.getItem('theme');
+      return storedTheme === 'default';
+   };
+
+   const [isDefault, setIsDefault] = useState(getInitialisDefault); // Сохраняем это в состояние
+
+   useEffect(() => {
+      const newTheme = isDefault ? 'default' : 'dark'; // Создаем тему на основе состояния, если там true то соответсвенно default
+
+      if (isDefault === true) { // Удаляем класс dark если была светлая
+         document.documentElement.classList.remove('dark');
+      } else if (isDefault === false) {
+         document.documentElement.classList.add('dark');
+      }
+
+      localStorage.setItem('theme', newTheme); // Кладет в локал сторедж текущую тему
+   }, [isDefault]);
+
+   const toggleTheme = () => { // Переключает тему на противоположную
+      setIsDefault(!isDefault);
+   }
+
+
+
    const buttonEnter = () => {
       setIsHovered(true);
    }
@@ -29,18 +76,25 @@ const Header = () => {
    };
 
    return (
-      <div className="container mx-auto flex justify-center items-center">
-         <div className="header-nav mt-10 px-15 py-3 rounded-4xl relative border border-white/30 group duration-200 hover:border-white/50 overflow-hidden" ref={buttonRef} onMouseEnter={buttonEnter} onMouseLeave={buttonLeave} onMouseMove={buttonMove}>
-            <span className="header-animation" style={animationStyle} />
-            <div className="absolute w-full h-full inset-0 bg-white/30 rounded-3xl blur-xl opacity-20 -z-10 duration-200 ease group-hover:opacity-30" />
-            <ul className="header-nav__list flex gap-10 text-white/70">
-               <li><a href="" className="hover:text-white duration-200 ease">Главная</a></li>
-               <li><a href="" className="hover:text-white duration-200 ease">Обо мне</a></li>
-               <li><a href="" className="hover:text-white duration-200 ease">Проекты</a></li>
-               <li><a href="" className="hover:text-white duration-200 ease">Контакты</a></li>
-            </ul>
+      <header className="header relative pt-10">
+         <div className={`container mx-auto flex justify-between items-center`}>
+            <div className="w-18.5"></div>
+            <div className={` header-nav justify-center px-15 py-3 rounded-4xl relative border border-white/30 group overflow-hidden dark:border-black`} ref={buttonRef} onMouseEnter={buttonEnter} onMouseLeave={buttonLeave} onMouseMove={buttonMove}>
+               <span className="header-animation" style={animationStyle} />
+               <div className="absolute w-full h-full inset-0 bg-white/30 rounded-3xl blur-xl opacity-20 -z-10 duration-200 ease group-hover:opacity-30" />
+               <ul className="header-nav__list flex gap-10 text-white/70 dark:text-black">
+                  <li><a href="" className="hover:text-sky-400 duration-200 ease">Главная</a></li>
+                  <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('about', e)}>Обо мне</a></li>
+                  <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('projects', e)}>Проекты</a></li>
+                  <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('contacts', e)}>Контакты</a></li>
+               </ul>
+            </div>
+
+            <button className="cursor-pointer border border-white/30 p-3 px-6 rounded-4xl dark:text-black dark:border-black" onClick={toggleTheme}>
+               {isDefault ? <Sun /> : <Moon />}
+            </button>
          </div>
-      </div>
+      </header>
    );
 }
 

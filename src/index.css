@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Jost:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
    font-family: 'Jost', sans-serif;
    font-size: 18px;
    line-height: 1.5;
-   background: #000;
-   color: #fff;
+   background: #000000;
+   color: #ffffff;
    overflow-x: hidden;
+}
+
+body {
+   @apply dark:bg-white;
 }
 
 .asd {
@@ -141,26 +146,17 @@ body {
    position: absolute;
    top: 0;
    left: 0;
-   width: 100px;
+   width: 600px;
    height: 100px;
    border-radius: 50%;
-   background-color: rgba(255, 255, 255, 0.2);
-   filter: blur(60px);
+   background-color: rgba(255, 255, 255, 0.1);
+   filter: blur(70px);
    pointer-events: none;
    transition: transform 0.05s ease;
 }
 
-
 .gradient-text {
-   background-image: linear-gradient(90deg, rgb(91, 50, 241), rgb(5, 255, 255));
-   color: transparent;
-   background-clip: text;
-   -webkit-text-fill-color: transparent;
-   -webkit-background-clip: text;
-}
-
-.countup {
-   background-image: linear-gradient(90deg, rgb(91, 50, 241), rgb(5, 255, 255));
+   background-image: linear-gradient(90deg, rgb(46, 87, 221), rgb(5, 255, 255));
    color: transparent;
    background-clip: text;
    -webkit-text-fill-color: transparent;
@@ -184,14 +180,8 @@ body {
    background: linear-gradient(0deg, rgb(123, 87, 252), rgb(98, 193, 229));
 }
 
-
-.project-title {
-   background-image: linear-gradient(90deg, rgb(91, 50, 241), rgb(5, 255, 255));
-   color: transparent;
-   background-clip: text;
-   -webkit-text-fill-color: transparent;
-   -webkit-background-clip: text;
-   font-weight: 500;
+.about-icon {
+   background: linear-gradient(90deg, rgb(91, 50, 241), rgb(5, 255, 255));
 }
 
 .social-icon {
@@ -223,4 +213,30 @@ body {
 .welcome-text.active {
    opacity: 1;
    transform: translateY(0px);
+}
+
+
+.number-input {
+   -moz-appearance: textfield;
+   appearance: textfield;
+   -webkit-appearance: none;
+}
+
+.number-input::-webkit-inner-spin-button,
+.number-input::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+
+.header {
+   position: sticky;
+   top: -20px;
+   z-index: 99999999;
+}
+
+.header-nav {
+   backdrop-filter: blur(15px);
+   filter: blur(0.2px);
+   z-index: 99999999;
 }

@@ -1,8 +1,14 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import Socials from './Socials';
 import { useForm } from "react-hook-form";
+import axios from 'axios';
+import { useState } from "react";
 
 const Contacts = () => {
+   const [serverMessage, setServerMessage] = useState('');
+   const [modalActive, setModalActive] = useState(false);
+
+   const API_URL = 'http://localhost:3000/send-gmail';
 
    const {
       register,
@@ -11,15 +17,26 @@ const Contacts = () => {
       formState: { errors },
    } = useForm({ mode: 'onChange' });
 
-   const onSubmit = (data) => {
-      const name = data.name;
-      const phone = data.phone;
-      const message = data.message;
-
-      console.log(data);
+   const onSubmit = async (data) => {
+      setServerMessage('');
+      try {
+         const response = await axios.post(API_URL, data);
+         setServerMessage('Успешно отправлено!');
+         setModalActive(true);
+         document.body.classList.add('overflow-hidden');
+         console.log('Пошло поехало', response.data);
+      } catch (err) {
+         if (err.response && err.response.status === 429) {
+            setServerMessage('Слишком много запросов, повторите попытку позже.');
+         } else {
+            setServerMessage('Произошла ошибка при отправке');
+         }
+         console.error('Ошибка на стороне клиента: ', err);
+      }
 
       reset();
    }
+
 
    return (
       <section className="mt-70 mb-50" id="contacts">
@@ -63,7 +80,7 @@ const Contacts = () => {
                   </div>
 
 
-                  <div className="bg-white/[5%] py-7 pt-5 px-7 w-130 rounded-4xl text-center dark:bg-black/[5%]">
+                  <div className="bg-white/5 py-7 pt-5 px-7 w-130 rounded-4xl text-center dark:bg-black/5">
                      <form action="" onSubmit={handleSubmit(onSubmit)}>
                         <h3 className="text-3xl font-medium mb-7 dark:text-black">Отправьте сообщение</h3>
 
@@ -97,7 +114,7 @@ const Contacts = () => {
                         />
                         {errors.phone && <p className="text-sky-400">{errors.phone.message}</p>}
                         <p className="font-light text-xl text-white/70 dark:text-black/70 mt-5">Сообщение</p>
-                        <textarea className="w-full h-30 mb-5 border-white/30 border outline-none px-4 py-2 rounded-xl resize-none dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70"
+                        <textarea className="w-full h-30 border-white/30 border outline-none px-4 py-2 rounded-xl resize-none dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70"
                            {...register("description",
                               {
                                  required: 'Сообщение?',
@@ -109,13 +126,31 @@ const Contacts = () => {
                            )}
                         />
                         {errors.description && <p className="text-sky-400">{errors.description.message}</p>}
-                        <button className={`flex mx-auto gap-2 items-center cursor-pointer px-6 py-3 border border-black rounded-4xl bg-white text-black relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-white/50 hover:text-white hover:shadow-xl hover:shadow-white/10 hover:bg-transparent welcome-button dark:bg-black dark:text-white dark:hover:text-black dark:hover:border-black group`}
+                        <button onClick={() => {
+                           document.body.classList.add('overflow-hidden');
+                        }} className={`flex mx-auto gap-2 items-center cursor-pointer px-6 py-3 border border-black rounded-4xl bg-white text-black relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-white/50 hover:text-white hover:shadow-xl hover:shadow-white/10 hover:bg-transparent welcome-button dark:bg-black dark:text-white dark:hover:text-black dark:hover:border-black group mt-5`}
                         >
                            <div className="w-full inset-0 absolute bg-white/30 rounded-4xl opacity-70 blur-3xl -z-10" />
                            Отправить
                            <Send className="group-hover:rotate-45 duration-400 ease" />
                         </button>
                      </form>
+
+
+
+                     <div className={`fixed inset-0 flex justify-center items-center bg-black/20 backdrop-blur-lg z-9999 ${modalActive ? 'active-overlay' : ''} overlay`}>
+                        <div className={`flex flex-col ${modalActive ? 'active-modal' : ''} modal bg-white w-100 max-h-40 rounded-2xl p-10 items-center`}>
+                           <p className="text-black">{serverMessage}</p>
+
+                           <button onClick={() => {
+                              setModalActive(false);
+                              document.body.classList.remove('overflow-hidden');
+                           }} className="flex gap-2 items-center cursor-pointer px-6 py-5 border border-black rounded-4xl bg-black text-white relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-black hover:text-black hover:shadow-xl hover:shadow-black/20 hover:bg-transparent welcome-button dark:bg-black dark:text-white dark:hover:text-black dark:hover:border-black group mt-5">
+                              <div className="w-full inset-0 absolute bg-white/30 rounded-4xl opacity-70 blur-3xl -z-10" />
+                              Закрыть
+                           </button>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>

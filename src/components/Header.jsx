@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useScrollTo } from './../hooks/useScrollTo';
-import { Moon } from "lucide-react";
+import { ArrowUp, Moon } from "lucide-react";
 import { Sun } from "lucide-react";
 
 
@@ -9,15 +9,14 @@ const Header = () => {
    const [position, setPosition] = useState({ x: 0, y: 0 });
    const buttonRef = useRef(null);
    const scrollToSection = useScrollTo();
-   const [scrollY, setScrollY] = useState(0);
-   const [isFixed, setIsFixed] = useState(false)
+   const [backToTop, setBackToTop] = useState(false)
 
    useEffect(() => {
       const handleScroll = () => {
-         if (window.scrollY > 300) {
-            setIsFixed(true);
+         if (window.scrollY > 500) {
+            setBackToTop(true);
          } else {
-            setIsFixed(false);
+            setBackToTop(false);
          }
       }
 
@@ -26,6 +25,13 @@ const Header = () => {
          window.removeEventListener('scroll', handleScroll)
       };
    }, []);
+
+   const clickToTop = () => {
+      window.scroll({
+         top: 0,
+         behavior: 'smooth',
+      })
+   }
 
 
    const getInitialisDefault = () => { // Достает тему из лок. стореджа и возвращает true если тема default, fals если dark (светлая)
@@ -76,25 +82,29 @@ const Header = () => {
    };
 
    return (
-      <header className="header relative pt-10">
-         <div className={`container mx-auto flex justify-between items-center`}>
-            <div className="w-18.5"></div>
-            <div className={` header-nav justify-center px-15 py-3 rounded-4xl relative border border-white/30 group overflow-hidden dark:border-black`} ref={buttonRef} onMouseEnter={buttonEnter} onMouseLeave={buttonLeave} onMouseMove={buttonMove}>
-               <span className="header-animation" style={animationStyle} />
-               <div className="absolute w-full h-full inset-0 bg-white/30 rounded-3xl blur-xl opacity-20 -z-10 duration-200 ease group-hover:opacity-30" />
-               <ul className="header-nav__list flex gap-10 text-white/70 dark:text-black">
-                  <li><a href="" className="hover:text-sky-400 duration-200 ease">Главная</a></li>
-                  <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('about', e)}>Обо мне</a></li>
-                  <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('projects', e)}>Проекты</a></li>
-                  <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('contacts', e)}>Контакты</a></li>
-               </ul>
-            </div>
+      <>
+         <header className="header relative pt-10">
+            <div className={`container mx-auto flex justify-between items-center`}>
+               <div className="w-18.5"></div>
+               <div className={` header-nav justify-center px-15 py-3 rounded-4xl relative border border-white/30 group overflow-hidden dark:border-black`} ref={buttonRef} onMouseEnter={buttonEnter} onMouseLeave={buttonLeave} onMouseMove={buttonMove}>
+                  <span className="header-animation" style={animationStyle} />
+                  <div className="absolute w-full h-full inset-0 bg-white/30 rounded-3xl blur-xl opacity-20 -z-10 duration-200 ease group-hover:opacity-30" />
+                  <ul className="header-nav__list flex gap-10 text-white/70 dark:text-black">
+                     <li><a href="" className="hover:text-sky-400 duration-200 ease">Главная</a></li>
+                     <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('about', e)}>Обо мне</a></li>
+                     <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('projects', e)}>Проекты</a></li>
+                     <li><a href="" className="hover:text-sky-400 duration-200 ease" onClick={(e) => scrollToSection('contacts', e)}>Контакты</a></li>
+                  </ul>
+               </div>
 
-            <button className="cursor-pointer border border-white/30 p-3 px-6 rounded-4xl dark:text-black dark:border-black" onClick={toggleTheme}>
-               {isDefault ? <Sun /> : <Moon />}
-            </button>
-         </div>
-      </header>
+               <button className="cursor-pointer border border-white/30 p-3 px-6 rounded-4xl dark:text-black dark:border-black" onClick={toggleTheme}>
+                  {isDefault ? <Sun /> : <Moon />}
+               </button>
+            </div>
+         </header>
+
+         <ArrowUp className={`fixed right-30 bottom-30 backdrop-blur-md z-999 px-4 py-3 w-15 h-13 rounded-4xl border border-white/30 cursor-pointer duration-200 ease hover:bg-white/10 ${backToTop ? 'active-back' : ''} back`} onClick={clickToTop}/>
+      </>
    );
 }
 

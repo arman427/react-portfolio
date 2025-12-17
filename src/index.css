@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Jost:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
 @import "tailwindcss";
+
 @custom-variant dark (&:where(.dark, .dark *));
+
+html {
+   scrollbar-gutter: stable;
+}
 
 body {
    font-family: 'Jost', sans-serif;
@@ -232,11 +237,44 @@ body {
 .header {
    position: sticky;
    top: -20px;
-   z-index: 99999999;
+   z-index: 9999;
 }
 
 .header-nav {
    backdrop-filter: blur(15px);
    filter: blur(0.2px);
-   z-index: 99999999;
+   z-index: 9999;
+}
+
+
+.back {
+   opacity: 0;
+   transform: translateY(50px);
+}
+
+
+.active-back {
+   opacity: 1;
+   transform: translateY(0px);
+}
+
+
+.overlay {
+   opacity: 0;
+   visibility: hidden;
+   transition: all 0.3s ease;
+}
+
+.modal {
+   opacity: 0;
+   transition: all 0.3s ease;
+}
+
+.overlay.active-overlay {
+   opacity: 1;
+   visibility: visible;
+}
+
+.modal.active-modal {
+   opacity: 1;
 }

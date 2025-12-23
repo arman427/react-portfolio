@@ -56,7 +56,7 @@ const Projects = () => {
                            <p className='mt-3 text-white/70 dark:text-black'>{item.body}</p>
                         </div>
 
-                        <a className={`mx-auto flex gap-1 items-center cursor-pointer px-6 py-3 border border-black rounded-4xl bg-white text-black relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-white/50 hover:text-white hover:shadow-xl hover:shadow-white/10 hover:bg-transparent welcome-button mb-5 mt-7 dark:bg-black dark:text-white dark:hover:text-black dark:hover:border-black`}
+                        <a className={`mx-auto flex gap-1 items-center mt-10 mb-5    cursor-pointer px-10 py-4 border rounded-4xl bg-white text-black/70 text-xl relative overflow-hidden button hover:scale-102 hover:bg-transparent welcome-button dark:text-white`}
                            href={item.url}
                            target="_blank"
                         >

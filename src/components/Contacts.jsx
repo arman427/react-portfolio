@@ -8,7 +8,6 @@ const Contacts = () => {
    const [serverMessage, setServerMessage] = useState('');
    const [modalActive, setModalActive] = useState(false);
 
-   const API_URL = 'http://localhost:3000/send-gmail';
 
    const {
       register,
@@ -16,26 +15,6 @@ const Contacts = () => {
       reset,
       formState: { errors },
    } = useForm({ mode: 'onChange' });
-
-   const onSubmit = async (data) => {
-      setServerMessage('');
-      try {
-         const response = await axios.post(API_URL, data);
-         setServerMessage('Успешно отправлено!');
-         setModalActive(true);
-         document.body.classList.add('overflow-hidden');
-         console.log('Пошло поехало', response.data);
-      } catch (err) {
-         if (err.response && err.response.status === 429) {
-            setServerMessage('Слишком много запросов, повторите попытку позже.');
-         } else {
-            setServerMessage('Произошла ошибка при отправке');
-         }
-         console.error('Ошибка на стороне клиента: ', err);
-      }
-
-      reset();
-   }
 
 
    return (
@@ -81,7 +60,7 @@ const Contacts = () => {
 
 
                   <div className="bg-white/5 py-7 pt-5 px-7 w-130 rounded-4xl text-center dark:bg-black/5">
-                     <form action="" onSubmit={handleSubmit(onSubmit)}>
+                     <form action="">
                         <h3 className="text-3xl font-medium mb-7 dark:text-black">Отправьте сообщение</h3>
 
                         <p className="font-light text-xl text-white/70 dark:text-black/70">Ваше имя</p>
@@ -128,11 +107,11 @@ const Contacts = () => {
                         {errors.description && <p className="text-sky-400">{errors.description.message}</p>}
                         <button onClick={() => {
                            document.body.classList.add('overflow-hidden');
-                        }} className={`flex mx-auto gap-2 items-center cursor-pointer px-6 py-3 border border-black rounded-4xl bg-white text-black relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-white/50 hover:text-white hover:shadow-xl hover:shadow-white/10 hover:bg-transparent welcome-button dark:bg-black dark:text-white dark:hover:text-black dark:hover:border-black group mt-5`}
+                        }} className={`group mx-auto flex gap-3 items-center mt-10 cursor-pointer px-10 py-4 border rounded-4xl bg-white text-black/70 text-xl relative overflow-hidden button hover:scale-102 hover:bg-transparent welcome-button dark:text-white`}
                         >
                            <div className="w-full inset-0 absolute bg-white/30 rounded-4xl opacity-70 blur-3xl -z-10" />
                            Отправить
-                           <Send className="group-hover:rotate-45 duration-400 ease" />
+                           <Send className="group-hover:rotate-45 duration-500 ease-in-out" />
                         </button>
                      </form>
 

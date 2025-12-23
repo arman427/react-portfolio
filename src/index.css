@@ -7,11 +7,13 @@ html {
    scrollbar-gutter: stable;
 }
 
+
+
 body {
    font-family: 'Jost', sans-serif;
    font-size: 18px;
    line-height: 1.5;
-   background: #000000;
+   background: rgb(0, 3, 5);
    color: #ffffff;
    overflow-x: hidden;
 }
@@ -24,74 +26,78 @@ body {
    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
 }
 
+.welcome-circle {
+   background-image: linear-gradient(to right, #7effd7, #60ffc6, #42ffb0, #24ff97, #00ff79);
+}
+
 .linii {
    filter: blur(100px);
 }
 
 .one {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    top: -1200px;
    right: -100px;
 }
 
 .two {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: -0.3s;
    top: -1200px;
    right: -500px;
 }
 
 .three {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: 0.6s;
    top: -1300px;
    right: -800px;
 }
 
 .four {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: -0.9s;
    top: -1300px;
    right: -1100px;
 }
 
 .five {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: -0.2s;
    top: -1300px;
    right: -900px;
 }
 
 .six {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: -0.5s;
    top: -1300px;
    right: -700px;
 }
 
 .seven {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: -0.5s;
    top: -1300px;
    right: -400px;
 }
 
 .eight {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: 0.5s;
    top: -1300px;
    right: -300px;
 }
 
 .nine {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: 2s;
    top: -1300px;
    right: -1500px;
 }
 
 .ten {
-   animation: animate 3s infinite;
+   animation: animate 10s infinite;
    animation-delay: 0.2s;
    top: -1300px;
    right: -1600px;
@@ -108,7 +114,7 @@ body {
    }
 
    100% {
-      transform: translateY(2100px);
+      transform: translateY(2000px);
       opacity: 0;
    }
 }
@@ -117,12 +123,13 @@ body {
    content: '';
    position: absolute;
    left: 0;
-   width: 20px;
+   width: 80px;
    height: 100%;
    background-color: rgba(255, 255, 255, 1);
+   filter: blur(30px);
 
    left: -60px;
-   transition: all 0.2s ease;
+   transition: all .4s cubic-bezier(0.47, 0, 0.745, 0.715);
 }
 
 .button:hover::after {
@@ -132,36 +139,20 @@ body {
 .button {
    position: relative;
    overflow: hidden;
+   transition: all .4s ease;
+   animation-duration: 1.5s;
+   animation-timing-function: ease;
+   box-shadow: 0px 5px 32px rgba(52, 211, 153, 0.2);
+   background-image: linear-gradient(to right, #7effd7, #60ffc6, #42ffb0, #24ff97, #00ff79);
 }
 
-.button .cursor-animation {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 180px;
-   height: 100px;
-   border-radius: 50%;
-   background-color: rgba(255, 255, 255, 0.2);
-   filter: blur(50px);
-   pointer-events: none;
-   transition: transform 0.05s linear;
+.button:hover {
+   box-shadow: 0px 5px 60px rgba(52, 211, 153, 0.4);
 }
 
-.header-animation {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 600px;
-   height: 100px;
-   border-radius: 50%;
-   background-color: rgba(255, 255, 255, 0.1);
-   filter: blur(70px);
-   pointer-events: none;
-   transition: transform 0.05s ease;
-}
 
 .gradient-text {
-   background-image: linear-gradient(90deg, rgb(46, 87, 221), rgb(5, 255, 255));
+   background-image: linear-gradient(to right, #7effd7, #60ffc6, #42ffb0, #24ff97, #00ff79);
    color: transparent;
    background-clip: text;
    -webkit-text-fill-color: transparent;
@@ -198,6 +189,7 @@ body {
 }
 
 .welcome-title {
+   text-shadow: 0 0 2px #ffffff1a, 0 0 4px #ffffff4d, 0 0 8px #fff3, 0 0 80px #00ff7744;
    opacity: 0;
    transform: translateY(-200px);
    transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 6s ease;
@@ -220,6 +212,10 @@ body {
    transform: translateY(0px);
 }
 
+.welcome-count {
+   text-shadow: 0 0 2px rgba(255, 255, 255, .1), 0 0 4px rgba(255, 255, 255, .3), 0 0 8px rgba(255, 255, 255, .4), 0 0 110px rgba(2, 255, 107, 0.7);
+}
+
 
 .number-input {
    -moz-appearance: textfield;
@@ -238,12 +234,14 @@ body {
    position: sticky;
    top: -20px;
    z-index: 9999;
+   background: linear-gradient(to bottom, #000000, transparent);
 }
 
 .header-nav {
    backdrop-filter: blur(15px);
    filter: blur(0.2px);
    z-index: 9999;
+   box-shadow: 0px 10px 35px rgba(52, 211, 153, 0.08);
 }
 
 

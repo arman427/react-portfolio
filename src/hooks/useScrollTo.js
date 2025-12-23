@@ -4,7 +4,7 @@ export const useScrollTo = () => {
       const target = document.getElementById(sectionId);
       if (target) {
          window.scrollTo({
-            top: target.offsetTop,
+            top: target.offsetTop - 100,
             behavior: 'smooth'
          })
       }

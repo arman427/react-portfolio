@@ -1,7 +1,12 @@
 import Kohami from '/images/project-Kohami.png?url';
 import GearUp from '/images/project-gearUp.png?url';
 import Gulp from '/images/project-Insectoid.png?url';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/all';
+import { useRef } from 'react';
 
+gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
    const projects = [
@@ -31,6 +36,28 @@ const Projects = () => {
       },
    ];
 
+   const scrollRef = useRef();
+
+
+   useGSAP(() => {
+      const cards = gsap.utils.toArray(scrollRef.current.children);
+      gsap.fromTo(cards, {
+         y: 50,
+         opacity: 0
+      }, {
+         y: 0,
+         opacity: 1,
+         duration: .3,
+         stagger: 0.15,
+         scrollTrigger: {
+            trigger: scrollRef.current,
+            start: 'top 100%',
+            end: 'bottom 50%',
+         },
+         ease: 'power1.inOut',
+      })
+
+   }, { scope: scrollRef });
 
    return (
       <section className="projects mt-70" id='projects'>
@@ -39,9 +66,9 @@ const Projects = () => {
                <h1 className="md:text-7xl text-3xl lg:text-8xl font-bold text-white relative z-20 mb-2 dark:text-black">Мои <span className="gradient-text">проекты</span></h1>
                <p className="text-white/70 w-200 mx-auto dark:text-black">Добро пожаловать в моё портфолио собственных веб-проектов. Каждый из них является прямым отражением моего опыта, подхода к коду и внимания к деталям.</p>
 
-               <div className="projects-list flex justify-between mt-15">
-                  {projects.map((item, index) => (
-                     <div className="project-card max-w-112.5 border border-white/30 rounded-4xl flex flex-col justify-between  hover:-translate-y-3  duration-300 ease-in-out relative group dark:bg-black/10" key={index}>
+               <div className="projects-list flex justify-between mt-15" ref={scrollRef}>
+                  {projects.map((item) => (
+                     <div className="project-card max-w-112.5 border border-white/30 rounded-4xl flex flex-col justify-between  hover:-translate-y-3  duration-300 ease-in-out relative group dark:bg-black/10" key={item.id}>
                         <div className='absolute duration-300 ease w-full inset-0 bg-white/10 rounded-4xl opacity-50 blur-2xl group-hover:blur-sm -z-10' />
                         <img src={item.imageUrl} alt="project" className='h-62.5 rounded-t-4xl' />
 

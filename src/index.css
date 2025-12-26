@@ -147,7 +147,7 @@ body {
 }
 
 .button:hover {
-   box-shadow: 0px 5px 60px rgba(52, 211, 153, 0.4);
+   box-shadow: 0px 5px 80px rgba(52, 211, 153, 0.3);
 }
 
 
@@ -190,30 +190,11 @@ body {
 
 .welcome-title {
    text-shadow: 0 0 2px #ffffff1a, 0 0 4px #ffffff4d, 0 0 8px #fff3, 0 0 80px #00ff7744;
-   opacity: 0;
-   transform: translateY(-200px);
    transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 6s ease;
 }
 
-.welcome-title.active {
-   opacity: 1;
-   transform: translateY(0px);
-}
-
-.welcome-text {
-   opacity: 0;
-   transform: translateY(-150px);
-   transition: transform 1.7s ease, opacity 3s ease;
-   transition-delay: 0.6s;
-}
-
-.welcome-text.active {
-   opacity: 1;
-   transform: translateY(0px);
-}
-
 .welcome-count {
-   text-shadow: 0 0 2px rgba(255, 255, 255, .1), 0 0 4px rgba(255, 255, 255, .3), 0 0 8px rgba(255, 255, 255, .4), 0 0 110px rgba(2, 255, 107, 0.7);
+   text-shadow: 0 0 2px rgba(255, 255, 255, .1), 0 0 4px rgba(255, 255, 255, .2), 0 0 8px rgba(255, 255, 255, .3), 0 0 110px rgba(2, 255, 107, 0.6);
 }
 
 
@@ -275,4 +256,53 @@ body {
 
 .modal.active-modal {
    opacity: 1;
+}
+
+
+/* From Uiverse.io by satyamchaudharydev */
+.loader {
+   display: block;
+   --height-of-loader: 6px;
+   --loader-color: #0071e2;
+   width: 200px;
+   height: var(--height-of-loader);
+   border-radius: 30px;
+   background-color: rgba(0, 0, 0, 0.2);
+   position: relative;
+}
+
+.loader-overlay {
+   display: none;
+   opacity: 0;
+   transition: all 0.3s ease;
+}
+
+.loader-overlay.active {
+   display: flex;
+   opacity: 1;
+}
+
+.loader::before {
+   content: "";
+   position: absolute;
+   background: linear-gradient(to right, #7effd7, #60ffc6, #42ffb0, #24ff97, #00ff79);
+   top: 0;
+   left: 0;
+   width: 0%;
+   height: 100%;
+   border-radius: 30px;
+   animation: moving 1s ease-in-out infinite;
+   ;
+}
+
+@keyframes moving {
+   50% {
+      width: 100%;
+   }
+
+   100% {
+      width: 0;
+      right: 0;
+      left: unset;
+   }
 }

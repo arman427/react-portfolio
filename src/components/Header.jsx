@@ -51,7 +51,7 @@ const Header = () => {
             </div>
          </header>
 
-         <ArrowUp className={`fixed right-30 bottom-30 backdrop-blur-md z-999 px-6 py-4 w-20 h-15 rounded-4xl border border-white/10 cursor-pointer duration-300 ease ${backToTop ? 'active-back' : ''} back`} onClick={clickToTop}/>
+         <ArrowUp className={`fixed right-10 bottom-20 backdrop-blur-md z-999 px-6 py-4 w-20 h-15 rounded-4xl border border-white/10 cursor-pointer duration-300 ease ${backToTop ? 'active-back' : ''} back`} onClick={clickToTop}/>
       </>
    );
 }

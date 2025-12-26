@@ -1,13 +1,11 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import Socials from './Socials';
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import axios from 'axios';
 import { useState } from "react";
 
 const Contacts = () => {
-   const [serverMessage, setServerMessage] = useState('');
-   const [modalActive, setModalActive] = useState(false);
-
+   const [loading, setLoading] = useState(false);
 
    const {
       register,
@@ -15,6 +13,22 @@ const Contacts = () => {
       reset,
       formState: { errors },
    } = useForm({ mode: 'onChange' });
+
+   const onSubmit = async (data) => {
+      setLoading(true);
+      try {
+         const response = await axios.post('http://localhost:8080/send-gmail', data);
+         console.log(response.data.message);
+         document.body.classList.add('overflow-hidden');
+      } catch (error) {
+         console.error('Error:', error);
+         console.log(error.response?.data?.message || 'Ошибка отправки');
+      } finally {
+         setLoading(false);
+         document.body.classList.remove('overflow-hidden');
+         reset();
+      }
+   }
 
 
    return (
@@ -31,21 +45,21 @@ const Contacts = () => {
                         <Mail className="bg-white/10 px-3.5 w-13 h-13 rounded-[100%] dark:bg-black/10 dark:text-black" />
                         <div className="">
                            <h4 className="font-light text-xl dark:text-black">Почта</h4>
-                           <a href="mailto:babayananuta11@gmail.com" className="text-white/70 duration-400 ease hover:text-sky-400 text-[16px] dark:text-black/70 font-light">react@gmail.com</a>
+                           <a href="mailto:babayananuta11@gmail.com" className="text-white/70 duration-400 ease hover:text-emerald-400 text-[16px] dark:text-black/70 font-light">react@gmail.com</a>
                         </div>
                      </div>
                      <div className="flex gap-3 items-center">
                         <Phone className="bg-white/10 px-3.5 w-13 h-13 rounded-[100%] dark:bg-black/10 dark:text-black" />
                         <div className="flex flex-col justify-between">
                            <h4 className="font-light text-xl dark:text-black">Телефон</h4>
-                           <a href="tel:+79610599262" className="text-white/70 duration-400 ease hover:text-sky-400 text-[16px] dark:text-black/70 font-light">+7 (961) 059 92-62</a>
+                           <a href="tel:+79610599262" className="text-white/70 duration-400 ease hover:text-emerald-400 text-[16px] dark:text-black/70 font-light">+7 (961) 059 92-62</a>
                         </div>
                      </div>
                      <div className="flex gap-3 items-center">
                         <MapPin className="bg-white/10 px-3.5 w-13 h-13 rounded-[100%] dark:bg-black/10 dark:text-black" />
                         <div className="flex flex-col justify-between">
                            <h4 className="font-light text-xl dark:text-black">Местоположение</h4>
-                           <a href="mailto:babayananuta11@gmail.com" className="text-white/70 duration-400 ease hover:text-sky-400 text-[16px] dark:text-black/70 font-light">Улица пушкина бла бл ....</a>
+                           <a href="mailto:babayananuta11@gmail.com" className="text-white/70 duration-400 ease hover:text-emerald-400 text-[16px] dark:text-black/70 font-light">Улица пушкина бла бл ....</a>
                         </div>
                      </div>
 
@@ -60,7 +74,7 @@ const Contacts = () => {
 
 
                   <div className="bg-white/5 py-7 pt-5 px-7 w-130 rounded-4xl text-center dark:bg-black/5">
-                     <form action="">
+                     <form action="" onSubmit={handleSubmit(onSubmit)}>
                         <h3 className="text-3xl font-medium mb-7 dark:text-black">Отправьте сообщение</h3>
 
                         <p className="font-light text-xl text-white/70 dark:text-black/70">Ваше имя</p>
@@ -105,31 +119,20 @@ const Contacts = () => {
                            )}
                         />
                         {errors.description && <p className="text-sky-400">{errors.description.message}</p>}
-                        <button onClick={() => {
-                           document.body.classList.add('overflow-hidden');
-                        }} className={`group mx-auto flex gap-3 items-center mt-10 cursor-pointer px-10 py-4 border rounded-4xl bg-white text-black/70 text-xl relative overflow-hidden button hover:scale-102 hover:bg-transparent welcome-button dark:text-white`}
+                        <button className={`group mx-auto flex gap-3 items-center mt-10 cursor-pointer px-10 py-4 border rounded-4xl bg-white text-black/70 text-xl relative overflow-hidden button hover:scale-102 hover:bg-transparent welcome-button dark:text-white`}
                         >
                            <div className="w-full inset-0 absolute bg-white/30 rounded-4xl opacity-70 blur-3xl -z-10" />
                            Отправить
                            <Send className="group-hover:rotate-45 duration-500 ease-in-out" />
                         </button>
-                     </form>
 
 
-
-                     <div className={`fixed inset-0 flex justify-center items-center bg-black/20 backdrop-blur-lg z-9999 ${modalActive ? 'active-overlay' : ''} overlay`}>
-                        <div className={`flex flex-col ${modalActive ? 'active-modal' : ''} modal bg-white w-100 max-h-40 rounded-2xl p-10 items-center`}>
-                           <p className="text-black">{serverMessage}</p>
-
-                           <button onClick={() => {
-                              setModalActive(false);
-                              document.body.classList.remove('overflow-hidden');
-                           }} className="flex gap-2 items-center cursor-pointer px-6 py-5 border border-black rounded-4xl bg-black text-white relative overflow-hidden button duration-300 ease hover:-translate-y-2 hover:border-black hover:text-black hover:shadow-xl hover:shadow-black/20 hover:bg-transparent welcome-button dark:bg-black dark:text-white dark:hover:text-black dark:hover:border-black group mt-5">
-                              <div className="w-full inset-0 absolute bg-white/30 rounded-4xl opacity-70 blur-3xl -z-10" />
-                              Закрыть
-                           </button>
+                        <div className={`loader-overlay fixed inset-0 w-full h-full flex flex-col gap-3 items-center justify-center bg-black/30 backdrop-blur-md z-9999 ${loading ? 'active' : ''}`}>
+                           <h1 className="text-2xl">Пожалуйста, подождите...</h1>
+                           <div className="loader"></div>
                         </div>
-                     </div>
+
+                     </form>
                   </div>
                </div>
             </div>

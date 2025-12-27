@@ -7,6 +7,7 @@ import { useState } from "react";
 const Contacts = () => {
    const [loading, setLoading] = useState(false);
    const [serverMessage, setServerMessage] = useState('');
+   const API_URL = 'https://react-portfolio-backend-s5le.onrender.com';
 
    const {
       register,
@@ -18,7 +19,7 @@ const Contacts = () => {
    const onSubmit = async (data) => {
       setLoading(true);
       try {
-         const response = await axios.post('http://localhost:8080/send-gmail', data);
+         const response = await axios.post(API_URL, data);
          console.log(response.data.message);
          setServerMessage(response.data.message);
          document.body.classList.add('overflow-hidden');

@@ -25,6 +25,7 @@ const Socials = () => {
             </svg>
             <div className="w-full inset-0 absolute bg-white/10 duration-300 ease rounded-4xl opacity-70 -z-30" />
          </a>
+
       </div>
    );
 }

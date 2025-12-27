@@ -9,12 +9,12 @@ import Projects from './components/Projects.jsx';
 import Contacts from './components/Contacts.jsx';
 
 createRoot(document.getElementById('root')).render(
-   <StrictMode>
+   <>
       <App />
       <Header />
       <Welcome />
       <About />
       <Projects />
       <Contacts />
-   </StrictMode>,
+   </>,
 );

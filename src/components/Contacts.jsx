@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const Contacts = () => {
    const [loading, setLoading] = useState(false);
+   const [serverMessage, setServerMessage] = useState('');
 
    const {
       register,
@@ -19,6 +20,7 @@ const Contacts = () => {
       try {
          const response = await axios.post('http://localhost:8080/send-gmail', data);
          console.log(response.data.message);
+         setServerMessage(response.data.message);
          document.body.classList.add('overflow-hidden');
       } catch (error) {
          console.error('Error:', error);
@@ -80,7 +82,7 @@ const Contacts = () => {
                         <p className="font-light text-xl text-white/70 dark:text-black/70">Ваше имя</p>
                         <input type="text" className="w-full border-white/30 border outline-none px-4 py-2 rounded-xl dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70" {...register("name",
                            {
-                              required: 'Имя!',
+                              required: 'Имя обязательно!',
                               minLength: {
                                  value: 2,
                                  message: 'Мин. кол-во символов - 2',
@@ -97,7 +99,7 @@ const Contacts = () => {
                         <input type="number" className="w-full border-white/30 border outline-none px-4 py-2 rounded-xl number-input dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70"
                            {...register("phone",
                               {
-                                 required: 'Телефон!',
+                                 required: 'Телефон обязателен!',
                                  maxLength: {
                                     value: 11,
                                     message: 'Русский номер пж',
@@ -110,7 +112,7 @@ const Contacts = () => {
                         <textarea className="w-full h-30 border-white/30 border outline-none px-4 py-2 rounded-xl resize-none dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70"
                            {...register("description",
                               {
-                                 required: 'Сообщение?',
+                                 required: 'Сообщение обязательно!',
                                  maxLength: {
                                     value: 100,
                                     message: 'Э куда столько'
@@ -132,6 +134,7 @@ const Contacts = () => {
                            <div className="loader"></div>
                         </div>
 
+                        {serverMessage && <p className="mt-4 py-3 px-4 max-w-70 mx-auto rounded-xl text-green-900 bg-green-300">{serverMessage}</p>}
                      </form>
                   </div>
                </div>

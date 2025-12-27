@@ -50,7 +50,7 @@ const Welcome = () => {
             </div>
          </div>
 
-         <div className={`mx-auto text-[15px] max-w-90 sm:max-w-160 text-center text-white/70 welcome-text dark:text-black`}>Начинающий Фронтенд-Разработчик, превращающий идеи в быстрые, масштабируемые и интуитивно понятные веб-приложения. Разрабатываю на React и создаю чистые, эффективные пользовательские интерфейсы.</div>
+         <div className={`mx-auto px-4 text-[15px] max-w-90 sm:max-w-160 text-center text-white/70 welcome-text dark:text-black`}>Начинающий Фронтенд-Разработчик, превращающий идеи в быстрые, масштабируемые и интуитивно понятные веб-приложения. Разрабатываю на React и создаю чистые, эффективные пользовательские интерфейсы.</div>
 
          <button className={`mx-auto flex gap-1 items-center mt-10 cursor-pointer px-10 py-4 border rounded-4xl bg-white text-black/70 text-xl relative overflow-hidden button hover:scale-102 hover:bg-transparent welcome-button dark:text-white`}
             onClick={(e) => scrollToSection('about', e)}>

@@ -7,7 +7,7 @@ import { useState } from "react";
 const Contacts = () => {
    const [loading, setLoading] = useState(false);
    const [serverMessage, setServerMessage] = useState('');
-   const API_URL = 'https://react-portfolio-backend-s51e.onrender.com/';
+   const API_URL = 'https://react-portfolio-backend-s51e.onrender.com/send-gmail';
 
    const {
       register,

@@ -13,7 +13,7 @@ const Contacts = () => {
       handleSubmit,
       reset,
       formState: { errors },
-   } = useForm({ mode: 'onChange' });
+   } = useForm({ mode: 'onSubmit' });
 
    const onSubmit = async (data) => {
       setLoading(true);
@@ -80,7 +80,7 @@ const Contacts = () => {
                         <h3 className="text-3xl font-medium mb-7 dark:text-black">Отправьте сообщение</h3>
 
                         <p className="font-light text-xl text-white/70 dark:text-black/70">Ваше имя</p>
-                        <input type="text" className="w-full border-white/30 border outline-none px-4 py-2 rounded-xl dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70" {...register("name",
+                        <input placeholder="Владислав" type="text" className="placeholder:text-[14px] w-full border-white/30 border outline-none px-5 py-2 rounded-xl dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70" {...register("name",
                            {
                               required: 'Имя обязательно!',
                               minLength: {
@@ -95,26 +95,26 @@ const Contacts = () => {
                         )} />
                         {errors.name && <p className="text-sky-400">{errors.name.message}</p>}
 
-                        <p className="font-light text-xl text-white/70 dark:text-black/70 mt-5">Ваше телефон</p>
-                        <input type="number" className="w-full border-white/30 border outline-none px-4 py-2 rounded-xl number-input dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70"
+                        <p className="font-light text-xl text-white/70 dark:text-black/70 mt-5">Ваш телефон</p>
+                        <input placeholder="+7 (999) 888 77-66" type="tel" className="placeholder:text-[14px] w-full border-white/30 border outline-none px-5 py-2 rounded-xl number-input dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70"
                            {...register("phone",
                               {
                                  required: 'Телефон обязателен!',
-                                 maxLength: {
-                                    value: 11,
-                                    message: 'Русский номер пж',
+                                 pattern: {
+                                    value: /^(\+7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/,
+                                    message: 'Недопустимые символы',
                                  }
                               }
                            )}
                         />
                         {errors.phone && <p className="text-sky-400">{errors.phone.message}</p>}
                         <p className="font-light text-xl text-white/70 dark:text-black/70 mt-5">Сообщение</p>
-                        <textarea className="w-full h-30 border-white/30 border outline-none px-4 py-2 rounded-xl resize-none dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70"
+                        <textarea placeholder="Хочу сайт" className="placeholder:text[14px] w-full h-30 border-white/30 border outline-none px-5 py-2 rounded-xl resize-none dark:border-black/30 dark:text-black focus:border-white/70 duration-200 ease dark:focus:border-black/70"
                            {...register("description",
                               {
                                  required: 'Сообщение обязательно!',
                                  maxLength: {
-                                    value: 100,
+                                    value: 200,
                                     message: 'Э куда столько'
                                  }
                               }

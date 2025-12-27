@@ -15,10 +15,10 @@ const Welcome = () => {
       const text = new SplitText('.welcome-text', { type: 'words,chars' });
 
       gsap.from(titleSplit.chars, {
-         yPercent: 200,
+         yPercent: 80,
          opacity: 0,
-         duration: .7,
-         stagger: 0.05,
+         duration: 1.2,
+         stagger: 0.04,
          ease: "back",
       }),
 

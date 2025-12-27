@@ -38,9 +38,9 @@ const Header = () => {
          <header className="header relative pt-10">
             <div className={`container mx-auto flex center items-center`}>
                
-               <div className={`header-nav justify-center mx-auto px-15 py-3 rounded-4xl relative border border-white/10 group overflow-hidden dark:border-black bg-white/2 shadow-emerald-400`}>
+               <div className={`header-nav justify-center mx-auto px-10 py-4 rounded-4xl relative border border-white/10 group overflow-hidden dark:border-black bg-white/2 shadow-emerald-400`}>
                   
-                  <ul className="header-nav__list flex gap-10 text-white/70 dark:text-black text-[17px]">
+                  <ul className="header-nav__list flex gap-8 text-white/70 dark:text-black text-[16px]">
                      <li className="hover:-translate-y-[1.2px] duration-200"><a href="#" className="hover:text-white duration-300 ease">Главная</a></li>
                      <li className="hover:-translate-y-[1.2px] duration-200"><a href="#" className="hover:text-white duration-300 ease" onClick={(e) => scrollToSection('about', e)}>Обо мне</a></li>
                      <li className="hover:-translate-y-[1.2px] duration-200"><a href="#" className="hover:text-white duration-300 ease" onClick={(e) => scrollToSection('projects', e)}>Проекты</a></li>
@@ -51,7 +51,7 @@ const Header = () => {
             </div>
          </header>
 
-         <ArrowUp className={`fixed right-10 bottom-20 backdrop-blur-md z-999 px-6 py-4 w-20 h-15 rounded-4xl border border-white/10 cursor-pointer duration-300 ease ${backToTop ? 'active-back' : ''} back`} onClick={clickToTop}/>
+         <ArrowUp className={`fixed right-10 bottom-20 backdrop-blur-md z-999 px-4 py-3 w-13 h-12 rounded-xl border border-white/10 cursor-pointer ${backToTop ? 'active-back' : ''} back hover:border-white/50`} onClick={clickToTop}/>
       </>
    );
 }

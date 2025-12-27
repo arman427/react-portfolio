@@ -38,9 +38,9 @@ const Header = () => {
          <header className="header relative pt-10">
             <div className={`container mx-auto flex center items-center`}>
                
-               <div className={`header-nav justify-center mx-auto px-10 py-4 rounded-4xl relative border border-white/10 group overflow-hidden dark:border-black bg-white/2 shadow-emerald-400`}>
+               <div className={`header-nav justify-center mx-auto px-7 py-4 sm:px-10 rounded-4xl relative border border-white/10 group overflow-hidden dark:border-black bg-white/2 shadow-emerald-400`}>
                   
-                  <ul className="header-nav__list flex gap-8 text-white/70 dark:text-black text-[16px]">
+                  <ul className="header-nav__list flex gap-8 text-white/70 dark:text-black text-[13px] sm:text-[16px]">
                      <li className="hover:-translate-y-[1.2px] duration-200"><a href="#" className="hover:text-white duration-300 ease">Главная</a></li>
                      <li className="hover:-translate-y-[1.2px] duration-200"><a href="#" className="hover:text-white duration-300 ease" onClick={(e) => scrollToSection('about', e)}>Обо мне</a></li>
                      <li className="hover:-translate-y-[1.2px] duration-200"><a href="#" className="hover:text-white duration-300 ease" onClick={(e) => scrollToSection('projects', e)}>Проекты</a></li>

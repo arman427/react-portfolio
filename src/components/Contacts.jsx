@@ -37,11 +37,11 @@ const Contacts = () => {
    return (
       <section className="mt-70 mb-50" id="contacts">
          <div className="container mx-auto">
-            <div>
-               <h1 className="md:text-7xl text-center text-3xl lg:text-8xl font-bold text-white relative z-20 mb-2 dark:text-black">Мои <span className="gradient-text">контакты</span></h1>
-               <p className="text-white/70 text-center w-200 mx-auto dark:text-black">У вас есть на примете проект или вы хотите сотрудничать? Не стесняйтесь обращаться ко мне. Я всегда открыт для обсуждения новых возможностей.</p>
+            <div className="px-4">
+               <h1 className="md:text-7xl text-center text-5xl lg:text-8xl font-bold text-white relative z-20 mb-2 dark:text-black">Мои <span className="gradient-text">контакты</span></h1>
+               <p className="text-white/70 text-center max-w-200 mx-auto dark:text-black text-[16px] lg:text-[18px]">У вас есть на примете проект или вы хотите сотрудничать? Не стесняйтесь обращаться ко мне. Я всегда открыт для обсуждения новых возможностей.</p>
 
-               <div className="flex justify-center gap-80 mt-30">
+               <div className="flex justify-center flex-col lg:flex-row gap-80 mt-30">
                   <div className="grid gap-3">
                      <h4 className="text-3xl font-medium dark:text-black">Контактная информация</h4>
                      <div className="flex gap-3 items-center">
@@ -67,16 +67,15 @@ const Contacts = () => {
                      </div>
 
 
-                     <div className="text-center mt-10">
-                        <h4 className="mb-2 dark:text-black font-light">Свяжитесь со мной</h4>
-                        <div>
+                     <div className="mt-10">
+                        <h4 className="mb-2 dark:text-black font-light text-emerald-400">Свяжитесь со мной</h4>
+                        <div className="">
                            <Socials />
                         </div>
                      </div>
                   </div>
 
-
-                  <div className="bg-white/5 py-7 pt-5 px-7 w-130 rounded-4xl text-center dark:bg-black/5">
+                  <div className="mx-auto lg:mx-0 bg-white/5 py-7 pt-5 px-4 lg:px-7 w-80 lg:w-130 rounded-4xl text-center dark:bg-black/5">
                      <form action="" onSubmit={handleSubmit(onSubmit)}>
                         <h3 className="text-3xl font-medium mb-7 dark:text-black">Отправьте сообщение</h3>
 

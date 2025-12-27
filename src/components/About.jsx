@@ -7,12 +7,12 @@ const About = () => {
       <>
          <section className="about mt-150" id='about'>
             <div className="container mx-auto">
-               <div className="about-content flex justify-between gap-20">
+               <div className="about-content justify-between flex flex-col lg:flex-row items-center gap-20 px-4">
                   <div className="about-desc max-w-[700px]">
-                     <h1 className="md:text-7xl text-3xl lg:text-8xl font-bold text-white relative z-20 mb-2 dark:text-black">Обо <span className="gradient-text">мне</span></h1>
-                     <p className="text-white/70 mb-7 mt-5 dark:text-black">Я начинающий фронтенд-разработчик с примерно одного года целенаправленного обучения и практики. Мой путь в веб-разработку начался с искреннего любопытства, которое быстро переросло в настоящую страсть.</p>
+                     <h1 className="md:text-7xl text-5xl lg:text-8xl font-bold text-white relative z-20 mb-2 dark:text-black">Обо <span className="gradient-text">мне</span></h1>
+                     <p className="text-[16px] sm:text-[18px] text-white/70 mb-7 mt-5 dark:text-black">Я начинающий фронтенд-разработчик с примерно одного года целенаправленного обучения и практики. Мой путь в веб-разработку начался с искреннего любопытства, которое быстро переросло в настоящую страсть.</p>
 
-                     <ul className='text-white/70 grid gap-4 dark:text-black'>
+                     <ul className='text-[14px] sm:text-[18px] text-white/70 grid gap-4 dark:text-black'>
                         <li><span className='grad-linii'>Навыки:</span> Уверенно работаю с HTML5, CSS3 (включая Flexbox/Grid) и JavaScript (ES6+). Сейчас активно углубляюсь в Tailwind и React и осваиваю работу с системами контроля версий, такими как Git.
                         </li>
                         <li>
